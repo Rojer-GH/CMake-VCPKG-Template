@@ -1,0 +1,76 @@
+# Load in doxygen
+find_program(
+	${SB_DOXYGEN}
+	NAMES ${SB_DOXYGEN}
+	PATHS vendor/${SB_DOXYGEN}
+	DOC ${SB_DOXYGEN_DOC}
+	REQUIRED
+)
+
+# Load in Sphinx
+find_program(
+	${SB_SPHINX}
+	NAMES ${SB_SPHINX}
+	DOC ${SB_SPHINX_DOC}
+	REQUIRED
+)
+
+# Add doxygen build target
+add_custom_target(
+	${SB_DOXYGEN_BUILD}
+	COMMAND ${${SB_DOXYGEN}} ${SB_DOXYGEN_ARGS}
+	DEPENDS ${SB_DOXYGEN_CONFIG}
+	WORKING_DIRECTORY ${SB_ROOT}
+	VERBATIM
+)
+
+# Add doxygen clean target
+add_custom_target(
+	${SB_DOXYGEN_CLEAN}
+	COMMAND ${CMAKE_COMMAND} -E rm -Rf ${SB_DOXYGEN_OUTPUT}
+	COMMAND_EXPAND_LISTS
+	WORKING_DIRECTORY ${SB_ROOT}
+	VERBATIM
+)
+
+# Add sphinx build target
+add_custom_target(
+	${SB_SPHINX_BUILD}
+	COMMAND ${${SB_SPHINX}} ${SB_SPHINX_ARGS}
+	WORKING_DIRECTORY ${SB_ROOT}
+	VERBATIM
+)
+
+# Add sphinx clean target
+add_custom_target(
+	${SB_SPHINX_CLEAN}
+	COMMAND ${CMAKE_COMMAND} -E rm -Rf ${SB_SPHINX_API} ${SB_SPHINX_OUTPUT}
+	COMMAND_EXPAND_LISTS
+	WORKING_DIRECTORY ${SB_ROOT}
+	VERBATIM
+)
+
+# Add doxygen as depandancy to sphinx
+add_dependencies(${SB_SPHINX_BUILD} ${SB_DOXYGEN_BUILD})
+
+# Add targets to "Docs" folder
+
+set_property(
+	TARGET ${SB_DOXYGEN_BUILD}
+	PROPERTY FOLDER ${SB_PROJECT_FOLDER_DOCS}
+)
+
+set_property(
+	TARGET ${SB_DOXYGEN_CLEAN}
+	PROPERTY FOLDER ${SB_PROJECT_FOLDER_DOCS}
+)
+
+set_property(
+	TARGET ${SB_SPHINX_BUILD}
+	PROPERTY FOLDER ${SB_PROJECT_FOLDER_DOCS}
+)
+
+set_property(
+	TARGET ${SB_SPHINX_CLEAN}
+	PROPERTY FOLDER ${SB_PROJECT_FOLDER_DOCS}
+)

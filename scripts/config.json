@@ -1,0 +1,17 @@
+{
+    "$schema": "file://./config-schema.json",
+    "paths": {
+        "deps": "./vendor",
+        "py": {
+            "venv": "py_venv",
+            "binary": "py_bin"
+        }
+    },
+    "colors": {
+        "error": "0;91",
+        "warning": "0;93",
+        "highlight": "1;95",
+        "text": "0;97",
+        "success": "1;92"
+    }
+}

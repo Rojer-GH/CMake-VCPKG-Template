@@ -1,0 +1,14 @@
+{
+	"$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+	"version-string": "0.1.0",
+	"builtin-baseline": "7032c5759f823fc8699a5c37d5f7072464ccb9a8",
+	"dependencies": [
+		"doctest"
+	],
+	"overrides": [
+		{
+			"name": "doctest",
+			"version": "2.4.11#0"
+		}
+	]
+}

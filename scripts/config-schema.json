@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "paths": {
+            "type": "object",
+            "properties": {
+                "deps": {
+                    "type": "string"
+                },
+                "py": {
+                    "type": "object",
+                    "properties": {
+                        "venv": {
+                            "type": "string"
+                        },
+                        "binary": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "venv",
+                        "binary"
+                    ]
+                }
+            },
+            "required": [
+                "deps",
+                "py"
+            ]
+        },
+        "colors": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                },
+                "warning": {
+                    "type": "string"
+                },
+                "highlight": {
+                    "type": "string"
+                },
+                "text": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "error",
+                "warning",
+                "highlight",
+                "text",
+                "success"
+            ]
+        }
+    },
+    "required": [
+        "paths",
+        "colors"
+    ]
+}
